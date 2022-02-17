@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon NODE_ENV=dev index.js"
+    "dev": "nodemon NODE_ENV=dev index.js",
+    "prod": "node NODE_ENV=prod index.js"
   },
   "keywords": [],
   "author": "",
