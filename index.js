@@ -4,7 +4,7 @@ const bodyParser = require("express");
 require('./redefine')
 const app = express()
 
-require('dotenv').config({ path: `${process.env.NODE_ENV}.env` })
+require('dotenv').config({ path: `prod.env` })
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
