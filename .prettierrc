@@ -1,0 +1,28 @@
+{
+  "overrides": [
+    {
+      "files": "*.{js,jsx,ts,tsx}",
+      "options": {
+        "parser": "javascript",
+        "useTabs": true,
+        "tabWidth": 2,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "bracketSpacing": false,
+        "printWidth": 250,
+        "arrowParens": "always",
+        "bracketSameLine": true,
+        "jsxSingleQuote": true,
+        "semi": true
+      }
+    },
+    {
+      "files": "*.css",
+      "options": {
+        "useTabs": true,
+        "tabWidth": 4,
+        "printWidth": 150
+      }
+    }
+  ]
+}
