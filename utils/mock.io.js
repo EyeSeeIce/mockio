@@ -1757,6 +1757,13 @@ class MockIo {
     return zip
   }
 
+  bool(){
+    return !!this.#getRandomInt(0,1)
+  }
+
+  gender(){
+    return !!this.#getRandomInt(0,1) ? 'Male' : 'Female'
+  }
 }
 
 const haveHash = (data) => {

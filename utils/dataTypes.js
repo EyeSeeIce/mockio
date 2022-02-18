@@ -8,13 +8,15 @@ const data_types = {
   "address": "address", // *
   "city": "city",
   "country": "country",
-  "r_n": "r_n",
+  "number": "number",
   "time": "time",
   "zip": "zip",
   "img": "img",
   "company": "company",
   "id": "id", // *
   "hash": "hash", // *
+  "bool": "bool",
+  "gender": "gender"
 };
 
 module.exports = data_types

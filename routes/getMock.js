@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mock_io = require("../utils/mock.io");
 const mock_io_map = require('../utils/maps')
+const fs = require("fs");
 
 
 
@@ -16,7 +17,6 @@ const uncoverConditions = (newData) => {
     for (let i in data) {
 
       if (typeof data[i] === "object") {
-        const condition = JSON.parse(JSON.stringify(data[i]));
         createData(data[i]);
       } else {
         switch (data[i].replace(/\#.*$/, '')) {
@@ -26,7 +26,7 @@ const uncoverConditions = (newData) => {
           case "phone":
             data[i] = mock_io.phone();
             break;
-          case "r_n":
+          case "number":
             data[i] = mock_io.number(data[i]);
             break;
           case "title":
@@ -43,6 +43,12 @@ const uncoverConditions = (newData) => {
             break
           case "zip":
             data[i] = mock_io.zip()
+            break
+          case "bool":
+            data[i] = mock_io.bool()
+            break
+          case "gender":
+            data[i] = mock_io.gender()
             break
           default:
             data[i] = mock_io.getRandomValues(data[i]);
@@ -116,9 +122,19 @@ router.get('/user/', (req, res) => {
 })
 
 
-router.get("/test/", (req, res) => {
-  const str = 'прИВЕТт как дела?'
-  res.send(str.toCapital())
+router.get("/test/", async (req, res) => {
+  /*const getRandomInt = (min = 0, max) => {
+    min = Math.floor(min)
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  const data = fs.readdirSync('./images/')
+  data.forEach((i, index) => {
+    const ext_index = i.indexOf('.')
+    const ext = i.slice(ext_index, i.length)
+
+    fs.rename(`./images/${i}`, `./images/mock.io-${index}.${ext}`, (err,data) => {})
+  })*/
 });
 
 

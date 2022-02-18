@@ -6,7 +6,7 @@ class MockIoMaps {
     product_name: types.title+'#1',
     short_description: types.description+'#3',
     long_description: types.description+'#10',
-    cost: types.r_n+'#500',
+    cost: types.number+'#500',
     product_image: types.img
   }
 
@@ -22,7 +22,7 @@ class MockIoMaps {
     work: {
       company_name: types.company,
       start_work: types.time,
-      salary: types.r_n+'#3000'
+      salary: types.number+'#3000'
     }
   }
 
