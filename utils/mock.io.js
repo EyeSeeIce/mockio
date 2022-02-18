@@ -1748,7 +1748,7 @@ class MockIo {
   image(){
     const data = fs.readdirSync('./images');
     const length = data.length
-    return `${process.env.HOST}${process.env.PORT}/static/${data[this.#getRandomInt(0, length)]}`
+    return `${process.env.HOST}/static/${data[this.#getRandomInt(0, length)]}`
   }
 
   zip(){
