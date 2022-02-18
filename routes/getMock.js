@@ -16,7 +16,8 @@ const data_types = {
   "r_n": "r_n",
   "time": "time",
   "zip": "zip",
-  "img": "img"
+  "img": "img",
+  "company": "company",
 };
 
 
