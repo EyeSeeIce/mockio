@@ -64,3 +64,8 @@ String.prototype.padR = function(width,pad) {
 
   return (this + String.repeat(pad,length)).substr(0,width);
 }
+
+String.prototype.toCapital = function(){
+  const str = this.toLowerCase()
+  return str.slice(0,1).toUpperCase() + str.slice(1, str.length)
+}

@@ -1717,7 +1717,7 @@ class MockIo {
     const text = new Array(count).fill(0)
     const title = text.map(i => this.#all_data.words[this.#getRandomInt(0, length)]).join(' ')
 
-    return title
+    return title.toCapital()
   }
 
   description(data, count = 5){
@@ -1728,11 +1728,11 @@ class MockIo {
     const text = new Array(count).fill(0)
     const title = text.map(i => this.#all_data.words[this.#getRandomInt(0, length)]).join(' ')
 
-    return title
+    return title.toCapital()
   }
 
   time(data){
-    let format = 'yyyy-MM-dd'
+    let format = 'YYYY-MM-DD'
     if (haveHash(data)){
       format = haveHash(data)
     }
