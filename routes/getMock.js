@@ -123,7 +123,7 @@ router.get('/user/', (req, res) => {
 
 
 router.get("/test/", async (req, res) => {
-  /*const getRandomInt = (min = 0, max) => {
+  const getRandomInt = (min = 0, max) => {
     min = Math.floor(min)
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -133,8 +133,8 @@ router.get("/test/", async (req, res) => {
     const ext_index = i.indexOf('.')
     const ext = i.slice(ext_index, i.length)
 
-    fs.rename(`./images/${i}`, `./images/mock.io-${index}.${ext}`, (err,data) => {})
-  })*/
+    fs.rename(`./images/${i}`, `./images/mock.io-${index}${ext}`, (err,data) => {})
+  })
 });
 
 
