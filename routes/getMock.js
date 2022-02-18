@@ -97,28 +97,52 @@ router.post("/mock/", (req, res) => {
 });
 
 router.get('/product/', (req, res) => {
-  const { count } = req.query;
-
-  const dataArray = new Array(+count).fill(0);
+  let { limit, sort } = req.query;
+  if (!limit){
+    limit = 1
+  }
+  const dataArray = new Array(+limit).fill(0);
 
 
   const newData = changeData(mock_io_map.product);
 
   const d = dataArray.map(i => uncoverConditions(newData));
 
+  if (sort){
+
+    d.sort((a, b) => {
+      if (a[sort] < b[sort])
+        return -1;
+      if ( a[sort] > b[sort])
+        return 1;
+      return 0;
+    })
+  }
+
   res.send(d)
 })
 
 router.get('/user/', (req, res) => {
-  const { count } = req.query;
-
-  const dataArray = new Array(+count).fill(0);
+  let { limit, sort } = req.query;
+  if (!limit){
+    limit = 1
+  }
+  const dataArray = new Array(+limit).fill(0);
 
 
   const newData = changeData(mock_io_map.user);
 
   const d = dataArray.map(i => uncoverConditions(newData));
+  if (sort){
 
+    d.sort((a, b) => {
+      if (a[sort] < b[sort])
+        return -1;
+      if ( a[sort] > b[sort])
+        return 1;
+      return 0;
+    })
+  }
   res.send(d)
 })
 
