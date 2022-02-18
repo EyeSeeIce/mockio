@@ -3,6 +3,7 @@ const router = express.Router();
 const mock_io = require("../utils/mock.io");
 const mock_io_map = require('../utils/maps')
 const fs = require("fs");
+const e = require("express");
 
 
 
@@ -130,10 +131,7 @@ router.get("/test/", async (req, res) => {
   }
   const data = fs.readdirSync('./images/')
   data.forEach((i, index) => {
-    const ext_index = i.indexOf('.')
-    const ext = i.slice(ext_index, i.length)
-
-    fs.rename(`./images/${i}`, `./images/mock.io-${index}${ext}`, (err,data) => {})
+    fs.rename(`./images/${i}`, `./images/mock.io-${index}.png`, (err,data) => {})
   })
 });
 
