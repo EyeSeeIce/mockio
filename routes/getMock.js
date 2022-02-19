@@ -159,6 +159,9 @@ router.get("/test/", async (req, res) => {
   })
 });
 
+router.get('test-build', async (req, res) => {
+  res.send('autobuild')
+})
 
 module.exports = router;
 
