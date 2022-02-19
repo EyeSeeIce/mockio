@@ -160,7 +160,7 @@ router.get("/test/", async (req, res) => {
 });
 
 router.get('test-build', async (req, res) => {
-  res.send('auto 2')
+  res.send('auto 3')
 })
 
 module.exports = router;
