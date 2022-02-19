@@ -148,15 +148,7 @@ router.get('/user/', (req, res) => {
 
 
 router.get("/test/", async (req, res) => {
-  const getRandomInt = (min = 0, max) => {
-    min = Math.floor(min)
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  const data = fs.readdirSync('./images/')
-  data.forEach((i, index) => {
-    fs.rename(`./images/${i}`, `./images/mock.io-${index}.png`, (err,data) => {})
-  })
+ res.send('test')
 });
 
 router.get('/test-build', async (req, res) => {
