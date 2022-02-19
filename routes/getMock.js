@@ -151,9 +151,6 @@ router.get("/test/", async (req, res) => {
  res.send('test')
 });
 
-router.get('/test-build', async (req, res) => {
-  res.send('auto 3')
-})
 
 module.exports = router;
 
