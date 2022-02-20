@@ -85,13 +85,25 @@ function changeData(data) {
 }
 
 router.post("/mock/", (req, res) => {
-  const { count } = req.query;
+  const { limit, sort } = req.query;
 
-  const dataArray = new Array(+count).fill(0);
+
+  const dataArray = new Array(+limit).fill(0);
 
   const newData = changeData(req.body);
 
   const d = dataArray.map(i => uncoverConditions(newData));
+
+  if (sort){
+
+    d.sort((a, b) => {
+      if (a[sort] < b[sort])
+        return -1;
+      if ( a[sort] > b[sort])
+        return 1;
+      return 0;
+    })
+  }
 
   res.send(d);
 });
