@@ -51,6 +51,9 @@ const uncoverConditions = (newData) => {
           case "gender":
             data[i] = mock_io.gender()
             break
+          case "email":
+            data[i] = mock_io.email()
+            break
           default:
             data[i] = mock_io.getRandomValues(data[i]);
             break;

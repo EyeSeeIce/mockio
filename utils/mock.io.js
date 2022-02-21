@@ -1002,8 +1002,7 @@ class MockIo {
       "iHeartMedia",
       "loanDepot"
     ],
-    words      : ["implementation", "The sky", "above", "the port","was", "the color of television", "tuned", "to", "a dead channel", "All", "this happened", "more or less" ,"I", "had", "the story", "bit by bit", "from various people", "and", "as generally", "happens", "in such cases", "each time", "it", "was", "a different story","It", "was", "a pleasure", "to", "burn", "I'm",
-      "baby",
+    words      : ["implementation", "The sky", "above", "the port","was", "the color of television", "tuned", "to", "a dead channel", "All", "this happened", "more or less" ,"I", "had", "the story", "bit by bit", "from various people", "and", "as generally", "happens", "in such cases", "each time", "it", "was", "a different story","It", "was", "a pleasure", "to", "burn", "I'm", "baby",
       "intelligentsia",
       "hot",
       "chicken",
@@ -1664,7 +1663,112 @@ class MockIo {
       "adaptogen",
       "hammock",
       "austin",
-      "tilde"]
+      "tilde"],
+    cars       : [
+      "Audi",
+      "BMW",
+      "Ford",
+      "Honda",
+      "Hyundai",
+      "Kia",
+      "Lada",
+      "Mazda",
+      "Mercedes-Benz",
+      "Mitsubishi",
+      "Nissan",
+      "Renault",
+      "Skoda",
+      "Toyota",
+      "Volkswagen",
+      "Acura",
+      "Daihatsu",
+      "Datsun",
+      "Honda",
+      "Infiniti",
+      "Isuzu",
+      "Lexus",
+      "Mazda",
+      "Mitsubishi",
+      "Nissan",
+      "Scion",
+      "Subaru",
+      "Suzuki",
+      "Toyota",
+      "Buick",
+      "Cadillac",
+      "Chevrolet",
+      "Chrysler",
+      "Dodge",
+      "Ford",
+      "GMC",
+      "Hummer",
+      "Jeep",
+      "Lincoln",
+      "Mercury",
+      "Oldsmobile",
+      "Pontiac",
+      "Tesla",
+      "Aurus",
+      "Audi",
+      "BMW",
+      "Mercedes-Benz",
+      "Opel",
+      "Porsche",
+      "Volkswagen",
+      "Daewoo",
+      "Genesis",
+      "Hyundai",
+      "Kia",
+      "SsangYong",
+      "Alfa Romeo",
+      "Aston Martin",
+      "Bentley",
+      "Bugatti",
+      "Citroen",
+      "DS",
+      "Ferrari",
+      "Fiat",
+      "Jaguar",
+      "Lamborghini",
+      "Lancia",
+      "Land Rover",
+      "Maserati",
+      "Maybach",
+      "Mini",
+      "Peugeot",
+      "Ravon",
+      "Renault",
+      "Rolls-Royce",
+      "Rover",
+      "Saab",
+      "SEAT",
+      "Skoda",
+      "Smart",
+      "Volvo",
+      "ZAZ",
+      "Brilliance",
+      "BYD",
+      "Changan",
+      "Chery",
+      "CheryExeed",
+      "DongFeng",
+      "FAW",
+      "Foton",
+      "GAC",
+      "Geely",
+      "Great Wall",
+      "Haima",
+      "Haval",
+      "JAC",
+      "Lifan",
+      "Luxgen",
+      "Zotye"
+    ],
+    email      :{
+      host: ['gmail.com', 'yahoo.com', 'yandex.ru'],
+      symbols    :['.','-','']
+    },
+
   }
 
 
@@ -1763,6 +1867,18 @@ class MockIo {
 
   gender(){
     return !!this.#getRandomInt(0,1) ? 'Male' : 'Female'
+  }
+
+  email(){
+    const email = []
+    const host = this.#all_data.email.host
+    const name = this.#all_data.last_name
+    const symbols = this.#all_data.email.symbols
+
+    email.push(name[this.#getRandomInt(0, name.length-1)], symbols[this.#getRandomInt(0, symbols.length-1)])
+    email.push(this.#all_data.words[this.#getRandomInt(0, this.#all_data.words.length-1)])
+    email.push('@', host[this.#getRandomInt(0, host.length-1)])
+    return email.join('')
   }
 }
 
