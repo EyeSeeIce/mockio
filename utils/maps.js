@@ -16,9 +16,11 @@ class MockIoMaps {
     age: types.age,
     phone: types.phone,
     country: types.country,
+    gender: types.gender,
     city: types.city,
     zip: types.zip,
     photo: types.img,
+    email: types.email,
     work: {
       company_name: types.company,
       start_work: types.time,
