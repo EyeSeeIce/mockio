@@ -161,6 +161,29 @@ router.get('/user/', (req, res) => {
   res.send(d)
 })
 
+router.get('/todo/', (req, res) => {
+  let { limit, sort } = req.query;
+  if (!limit){
+    limit = 1
+  }
+  const dataArray = new Array(+limit).fill(0);
+
+
+  const newData = changeData(mock_io_map.todo);
+
+  const d = dataArray.map(i => uncoverConditions(newData));
+  if (sort){
+
+    d.sort((a, b) => {
+      if (a[sort] < b[sort])
+        return -1;
+      if ( a[sort] > b[sort])
+        return 1;
+      return 0;
+    })
+  }
+  res.send(d)
+})
 
 router.get("/test/", async (req, res) => {
  res.send('test')

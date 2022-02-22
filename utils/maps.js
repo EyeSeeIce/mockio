@@ -28,6 +28,14 @@ class MockIoMaps {
     }
   }
 
+  todo = {
+    complete: types.bool,
+    title: types.title+'#2',
+    created: types.time+'#YYYY-MM-DD hh:mm'
+  }
+
+
+
 
 
 
