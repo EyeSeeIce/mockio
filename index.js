@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors({
   origin: '*',
-  credentials: true,
 }))
 
 app.use('/api/', getMock)
