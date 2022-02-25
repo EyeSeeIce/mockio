@@ -8,7 +8,12 @@ const jwt = require("jsonwebtoken");
 
 const getNicknameFromEmail = (email) => {
   const index = email.indexOf('@')
-  return email.slice(0, index)
+  if (index != -1){
+    return email.slice(0, index)
+  }else {
+    return email
+  }
+
 }
 
 router.post("/auth/", async (req, res) => {
