@@ -18,7 +18,7 @@ app.use(cookieParser('secret_key', {
   maxAge: 3600 * 24
 }))
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://mock-dev.ru/'],
+  origin: '*',
   credentials:true,
   withCredentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
