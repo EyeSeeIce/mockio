@@ -1,0 +1,6 @@
+{
+  "max_limit_no_key": 10,
+  "max_limit_in_object_no_key": 5,
+  "max_limit_key": 100,
+  "max_limit_in_object_key": 1000
+}

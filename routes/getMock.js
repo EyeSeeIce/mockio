@@ -4,8 +4,8 @@ const mock_io = require("../utils/mock.io");
 const mock_io_map = require('../utils/maps')
 const fs = require("fs");
 const e = require("express");
-
-
+const auth_middleware = require('../middlewares/auth_middleware')
+const config = require('../utils/config.json')
 
 
 const uncoverConditions = (newData) => {
@@ -66,15 +66,17 @@ const uncoverConditions = (newData) => {
   return data;
 };
 
-function changeData(data) {
+function changeData(data, limit) {
+
   for (let i in data) {
     if (typeof data[i] === "object") {
-      changeData(data[i]);
+      changeData(data[i], limit);
       if (Array.isArray(data[i])) {
         if (typeof data[i].at(-1) === "number") {
           const condition = data[i][0];
           const newArray = [];
-          const length = data[i].at(-1);
+          const length = data[i].at(-1) > limit ? limit : data[i].at(-1);
+
           for (let j = 0; j < length; j++) {
             newArray.push(condition);
           }
@@ -87,13 +89,21 @@ function changeData(data) {
   return data;
 }
 
-router.post("/mock/", (req, res) => {
-  const { limit, sort } = req.query;
+router.post("/mock/",(req, res) => {
+  let { limit, sort, api_key } = req.query;
+  let inObjectLimit
 
+  if (!api_key){
+    limit = limit > config.max_limit_no_key ? config.max_limit_no_key : limit
+    inObjectLimit = config.max_limit_in_object_no_key
+  }else {
+    limit = limit > config.max_limit_key ? config.max_limit_key : limit
+    inObjectLimit = config.max_limit_in_object_key
+  }
 
   const dataArray = new Array(+limit).fill(0);
 
-  const newData = changeData(req.body);
+  const newData = changeData(req.body, inObjectLimit);
 
   const d = dataArray.map(i => uncoverConditions(newData));
 
@@ -112,14 +122,25 @@ router.post("/mock/", (req, res) => {
 });
 
 router.get('/product/', (req, res) => {
-  let { limit, sort } = req.query;
+  let { limit, sort, api_key } = req.query;
+
   if (!limit){
     limit = 1
   }
+
+  let inObjectLimit
+  if (!api_key){
+    limit = limit > config.max_limit_no_key ? config.max_limit_no_key : limit
+    inObjectLimit = config.max_limit_in_object_no_key
+  }else {
+    limit = limit > config.max_limit_key ? config.max_limit_key : limit
+    inObjectLimit = config.max_limit_in_object_key
+  }
+
   const dataArray = new Array(+limit).fill(0);
 
 
-  const newData = changeData(mock_io_map.product);
+  const newData = changeData(mock_io_map.product, inObjectLimit);
 
   const d = dataArray.map(i => uncoverConditions(newData));
 
@@ -137,15 +158,26 @@ router.get('/product/', (req, res) => {
   res.send(d)
 })
 
-router.get('/user/', (req, res) => {
-  let { limit, sort } = req.query;
+router.get('/user/',  (req, res) => {
+  let { limit, sort, api_key } = req.query;
   if (!limit){
     limit = 1
   }
+
+  let inObjectLimit
+  if (!api_key){
+    limit = limit > config.max_limit_no_key ? config.max_limit_no_key : limit
+    inObjectLimit = config.max_limit_in_object_no_key
+  }else {
+    limit = limit > config.max_limit_key ? config.max_limit_key : limit
+    inObjectLimit = config.max_limit_in_object_key
+  }
+
+
   const dataArray = new Array(+limit).fill(0);
 
 
-  const newData = changeData(mock_io_map.user);
+  const newData = changeData(mock_io_map.user, inObjectLimit);
 
   const d = dataArray.map(i => uncoverConditions(newData));
   if (sort){
@@ -162,14 +194,23 @@ router.get('/user/', (req, res) => {
 })
 
 router.get('/todo/', (req, res) => {
-  let { limit, sort } = req.query;
+  let { limit, sort, api_key } = req.query;
   if (!limit){
     limit = 1
+  }
+
+  let inObjectLimit
+  if (!api_key){
+    limit = limit > config.max_limit_no_key ? config.max_limit_no_key : limit
+    inObjectLimit = config.max_limit_in_object_no_key
+  }else {
+    limit = limit > config.max_limit_key ? config.max_limit_key : limit
+    inObjectLimit = config.max_limit_in_object_key
   }
   const dataArray = new Array(+limit).fill(0);
 
 
-  const newData = changeData(mock_io_map.todo);
+  const newData = changeData(mock_io_map.todo, inObjectLimit);
 
   const d = dataArray.map(i => uncoverConditions(newData));
   if (sort){

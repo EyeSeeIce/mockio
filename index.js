@@ -1,8 +1,12 @@
 const express = require('express')
 const getMock = require('./routes/getMock')
+const auth = require('./routes/auth')
+const apiKey = require('./routes/api_key')
 const bodyParser = require("express");
 require('./redefine')
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const auth_middleware = require('./middlewares/auth_middleware')
 const app = express()
 
 require('dotenv').config({ path: `prod.env` })
@@ -10,11 +14,20 @@ require('dotenv').config({ path: `prod.env` })
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(cookieParser('secret_key', {
+  maxAge: 3600 * 24
+}))
 app.use(cors({
-  origin: '*',
+  origin: 'http://localhost:3000',
+  credentials:true,
+  withCredentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }))
 
+
 app.use('/api/', getMock)
+app.use('/api/', auth)
+app.use('/api/',auth_middleware, apiKey)
 
 app.use('/static/', express.static('images'));
 
