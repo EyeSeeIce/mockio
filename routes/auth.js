@@ -86,7 +86,7 @@ router.post("/create/", async (req, res) => {
 });
 
 router.get("/logout/", async (req, res) => {
-  res.cookie("token", null);
+  /*res.cookie("token", null);*/
   res.send("logout");
 });
 
