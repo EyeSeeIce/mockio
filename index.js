@@ -10,7 +10,7 @@ const auth_middleware = require('./middlewares/auth_middleware')
 const app = express()
 
 const corsOpts = {
-  origin: ['https://mock-dev.ru/', 'http://localhost:3000/', 'http://mockio.ru', 'https://mockio.ru', '*'],
+  origin: ['https://mock-dev.ru/', 'http://localhost:3000/', 'http://mockio.ru', 'https://mockio.ru','http://localhost:5000/', '*'],
 
   methods: [
     'GET',
