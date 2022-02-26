@@ -18,7 +18,7 @@ const corsOpts = {
   ],
 
   allowedHeaders: [
-    'Authorization'
+    'Authorization', 'Accept', 'Accept-Language', 'Content-Language', 'Content-Type'
   ],
 };
 app.use(cors(corsOpts))
