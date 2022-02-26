@@ -31,17 +31,11 @@ router.post("/auth/", async (req, res) => {
       throw new Error("Auth error");
     }
 
-    const api_key = await client.q(`select api_key from mock_api_keys where user_id='${candidate[0].id}'`)
+    const api_key_rows = await client.q(`select api_key from mock_api_keys where user_id='${candidate[0].id}'`)
+    const api_key = api_key_rows.length > 0 ? api_key_rows[0].api_key : false
+    const access_token = tokenService.generateAccessToken({...candidate[0], api_key});
 
-    const access_token = tokenService.generateAccessToken({...candidate[0], api_key: api_key[0].api_key || false});
-
-
-
-    res.cookie("token", access_token, {
-      maxAge: 60 * 60 * 24 * 365 * 10
-    });
-
-    res.send({ user_login, user_nickname: candidate[0].user_nickname, api_key });
+    res.send({ user_login, user_nickname: candidate[0].user_nickname, api_key ,access_token});
 
   } catch (e) {
     res.status(400).send({ message: e.message });
