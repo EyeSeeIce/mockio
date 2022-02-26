@@ -10,11 +10,13 @@ const auth_middleware = require('./middlewares/auth_middleware')
 const app = express()
 
 const corsOpts = {
-  origin: ['https://mock-dev.ru/', 'http://localhost:3000/'],
+  origin: ['https://mock-dev.ru/', 'http://localhost:3000/', '*'],
 
   methods: [
     'GET',
     'POST',
+    'PUT',
+    'DELETE'
   ],
 };
 app.use(cors(corsOpts))
@@ -28,8 +30,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use('/api/', getMock)
-//app.use('/api/', auth)
-//app.use('/api/',auth_middleware, apiKey)
+app.use('/api/', auth)
+app.use('/api/',auth_middleware, apiKey)
 
 app.use('/static/', express.static('images'));
 
