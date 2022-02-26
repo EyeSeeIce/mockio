@@ -21,7 +21,9 @@ const corsOpts = {
   allowedHeaders: '*'
 };
 app.use(cors(corsOpts))
-
+app.use(cookieParser('secret_key', {
+  maxAge: 3600 * 24
+}))
 require('dotenv').config({ path: `prod.env` })
 
 app.use(bodyParser.json());

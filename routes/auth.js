@@ -18,10 +18,9 @@ const getNicknameFromEmail = (email) => {
 
 router.post("/auth/", async (req, res) => {
   try {
-    console.log(req.body);
+
     const { user_login, user_password } = req.body;
     const candidate = await client.q(`select * from mock_user where user_login='${user_login}'`);
-    console.log(candidate);
     if (!candidate) {
       throw new Error("User not found");
     }
@@ -37,6 +36,7 @@ router.post("/auth/", async (req, res) => {
     const api_key = api_key_rows.length > 0 ? api_key_rows[0].api_key : false
     const access_token = tokenService.generateAccessToken({...candidate[0], api_key});
 
+    res.cookie('token', access_token)
     res.send({ user_login, user_nickname: candidate[0].user_nickname, api_key ,access_token});
 
   } catch (e) {
