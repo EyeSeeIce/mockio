@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon NODE_ENV=dev index.js",
     "prod": "node NODE_ENV=prod index.js",
-    "gen": "node ./swagger/index.js"
+    "gen": "node ./swagger/index.js",
+    "start": "forever index.js",
+    "restart": "forever restart index.js"
   },
   "keywords": [],
   "author": "",
