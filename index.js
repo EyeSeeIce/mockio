@@ -18,7 +18,7 @@ const corsOpts = {
     'PUT',
     'DELETE'
   ],
-  allowedHeaders: ['Authorization', 'Accept', 'Accept-Language', 'Content-Language', 'Content-Type']
+  allowedHeaders: '*'
 };
 app.use(cors(corsOpts))
 
