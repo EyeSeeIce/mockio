@@ -45,7 +45,7 @@ router.post("/auth/", async (req, res) => {
 });
 
 router.get("/check/", async (req, res) => {
-  const { token } = req.cookies;
+  const token = req.headers.authorization.split(' ')[1]
   try {
     if (!token) {
       throw new Error("User not authorisation");
