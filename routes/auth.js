@@ -45,7 +45,7 @@ router.post("/auth/", async (req, res) => {
 });
 
 router.get("/check/", async (req, res) => {
-  const { token } = req.cookies;
+  /*const { token } = req.cookies;
   try {
     if (!token) {
       throw new Error("User not authorisation");
@@ -65,7 +65,8 @@ router.get("/check/", async (req, res) => {
   } catch (e) {
     console.log(e.message);
     res.status(401).send({ message: "User not authorisation" });
-  }
+  }*/
+  res.send('hehe')
 });
 
 router.post("/create/", async (req, res) => {
