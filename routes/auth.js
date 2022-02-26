@@ -18,8 +18,10 @@ const getNicknameFromEmail = (email) => {
 
 router.post("/auth/", async (req, res) => {
   try {
+    console.log(req.body);
     const { user_login, user_password } = req.body;
     const candidate = await client.q(`select * from mock_user where user_login='${user_login}'`);
+    console.log(candidate);
     if (!candidate) {
       throw new Error("User not found");
     }
