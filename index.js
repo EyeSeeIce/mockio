@@ -10,7 +10,7 @@ const auth_middleware = require('./middlewares/auth_middleware')
 const app = express()
 
 const corsOpts = {
-  origin: 'https://mock-dev.ru/',
+  origin: '*',
 
   methods: [
     'GET',
@@ -18,7 +18,6 @@ const corsOpts = {
   ],
 
   allowedHeaders: [
-    'Content-Type',
   ],
 };
 app.use(cors(corsOpts))
