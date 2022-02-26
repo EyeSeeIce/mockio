@@ -1850,7 +1850,7 @@ class MockIo {
   }
 
   image() {
-    const data = fs.readdirSync("/opt/mock.io/images");
+    const data = fs.readdirSync("./images");
     const length = data.length;
     return `https://mockio.ru/static/${data[this.#getRandomInt(0, length)]}`;
   }
