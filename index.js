@@ -19,7 +19,6 @@ app.use(cookieParser('secret_key', {
 }))
 app.use(cors({
   origin: '*',
-  credentials:true,
 }))
 
 
