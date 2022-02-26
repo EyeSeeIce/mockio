@@ -33,7 +33,7 @@ app.use('/api/', getMock)
 app.use('/api/', auth)
 app.use('/api/',auth_middleware, apiKey)
 
-app.use('/static/', express.static('images'));
+app.use('/static/', express.static('/opt/mock.io/images'));
 
 
 app.listen(process.env.PORT || 5000, () =>
