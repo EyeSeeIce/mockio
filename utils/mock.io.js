@@ -1852,7 +1852,7 @@ class MockIo {
   image() {
     const data = fs.readdirSync("/opt/mock.io/images");
     const length = data.length;
-    return `${process.env.HOST}/static/${data[this.#getRandomInt(0, length)]}`;
+    return `http://mockio.ru/static/${data[this.#getRandomInt(0, length)]}`;
   }
 
   zip() {
