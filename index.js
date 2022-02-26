@@ -14,9 +14,7 @@ require('dotenv').config({ path: `prod.env` })
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cookieParser('secret_key', {
-  maxAge: 3600 * 24
-}))
+
 app.use(cors({
   origin: '*',
 }))
