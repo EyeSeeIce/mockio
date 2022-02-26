@@ -18,6 +18,7 @@ const corsOpts = {
     'PUT',
     'DELETE'
   ],
+  allowedHeaders: ['Authorization']
 };
 app.use(cors(corsOpts))
 
