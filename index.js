@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/', getMock)
 app.use('/api/', auth)
-app.use('/api/',auth_middleware, apiKey)
+app.use('/api/', apiKey)
 
 app.use('/static/', express.static('/opt/mock.io/images'));
 

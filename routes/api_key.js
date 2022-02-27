@@ -3,8 +3,9 @@ const { generateApiToken } = require("../utils/tokenService");
 const client = require("../db");
 const router = express.Router()
 const uuid = require('uuid')
+const auth_middleware = require("../middlewares/auth_middleware");
 
-router.get('/key/', async (req, res) => {
+router.get('/key/',auth_middleware, async (req, res) => {
   try{
     const {id} = req.user_data
     const key = await client.q(`select api_key from mock_api_keys where user_id='${id}'`)
@@ -27,7 +28,7 @@ router.post('/key/', async (req, res) => {
 
 })
 
-router.delete('/key/', async (req, res) => {
+router.delete('/key/',auth_middleware, async (req, res) => {
   try {
     const {id} = req.user_data
     await client.q(`delete from mock_api_keys where user_id='${id}'`)
