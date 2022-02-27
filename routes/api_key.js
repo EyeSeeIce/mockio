@@ -5,9 +5,17 @@ const router = express.Router()
 const uuid = require('uuid')
 const auth_middleware = require("../middlewares/auth_middleware");
 
-
-
 router.get('/key/',auth_middleware, async (req, res) => {
+  try{
+    const {id} = req.user_data
+    const key = await client.q(`select api_key from mock_api_keys where user_id='${id}'`)
+    res.send(key)
+  }catch (e){
+    res.status(400).send({message: e.message})
+  }
+})
+
+router.post('/key/',auth_middleware, async (req, res) => {
   try {
     const key = uuid.v4()
     const {id} = req.user_data
